@@ -5,6 +5,8 @@ body {
         "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #b9540c;
+    overflow: hidden;
 }
 
 code {
@@ -12,10 +14,6 @@ code {
         monospace;
 }
 
-body {
-    background-color: #b9540c;
-    overflow: hidden;
-}
 .characters-list {
     flex-wrap: nowrap;
     max-width: 100%;
