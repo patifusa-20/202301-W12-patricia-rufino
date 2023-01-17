@@ -8,7 +8,7 @@ export function HomePage({
 }) {
     return (
         <>
-            <h2>Home</h2>
+            <h1>Challenge Week 12</h1>
             <Characters characters={characters}></Characters>
         </>
     );
