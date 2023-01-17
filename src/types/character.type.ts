@@ -15,5 +15,5 @@ export type CharacterTypes = {
     skill?: number;
     advisedCharacter?: Character; //las propiedades pueden apuntar a otras clases
     greasy?: number;
-    me: () => string;
+    death: () => void;
 };

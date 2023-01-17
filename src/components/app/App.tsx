@@ -4,7 +4,7 @@ import { HomePage } from "../../pages/home/home.page";
 import "./App.scss";
 
 function App() {
-    const { characters, handleLoad } = useCharacters();
+    const { characters, handleLoad, handleTalk, handleDie } = useCharacters();
 
     useEffect(() => {
         handleLoad();
@@ -12,7 +12,11 @@ function App() {
 
     return (
         <div className="App">
-            <HomePage characters={characters}></HomePage>
+            <HomePage
+                characters={characters}
+                handleTalk={handleTalk}
+                handleDie={handleDie}
+            ></HomePage>
         </div>
     );
 }

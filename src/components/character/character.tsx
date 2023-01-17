@@ -1,6 +1,15 @@
 import { CharacterTypes } from "../../types/character.type";
 
-export function Character({ character }: { character: CharacterTypes }) {
+export function Character({
+    character,
+    handleTalk,
+    handleDie,
+}: {
+    character: CharacterTypes;
+    handleTalk: (item: CharacterTypes) => void;
+    handleDie: (item: CharacterTypes) => void;
+}) {
+    const fullName = character.name + " " + character.family;
     const loadCharacterTraits = (character: CharacterTypes) => {
         let characterTraits = "";
         if (character.years) {
@@ -16,26 +25,38 @@ export function Character({ character }: { character: CharacterTypes }) {
             characterTraits += `Peloteo: ${character.greasy}`;
         }
         if (character.advisedCharacter && character.family) {
-            characterTraits += `Asesora a: ${character.advisedCharacter.me()}`;
+            characterTraits += `Asesora a: ${character.advisedCharacter.name}`;
         }
         if (character.advisedCharacter && character.greasy) {
-            characterTraits += `Sirve a: ${character.advisedCharacter.me()}`;
+            characterTraits += `Sirve a: ${character.advisedCharacter.name}`;
         }
         return characterTraits;
     };
 
+    const handleTalkClick = () => {
+        handleTalk(character);
+    };
+
+    const handleDieClick = () => {
+        handleDie(character);
+    };
+
     return (
         <>
-            <li className="character col" data-name={character.name}>
+            <li className="character col" id={character.id}>
                 <div className="card character__card">
                     <img
                         src={character.image}
-                        alt="${character.me()}"
-                        className="character__picture card-img-top"
+                        alt={fullName}
+                        className={
+                            character.isAlive
+                                ? "character__picture card-img-top"
+                                : "character__picture card-img-top character__picture--rotate"
+                        }
                     />
                     <div className="card-body">
                         <h2 className="character__name card-title h4">
-                            {character.me()}
+                            {fullName}
                         </h2>
                         <div className="character__info">
                             <ul className="list-unstyled">
@@ -53,12 +74,14 @@ export function Character({ character }: { character: CharacterTypes }) {
                                 <button
                                     className="character__action btn"
                                     id="btn-communication"
+                                    onClick={handleTalkClick}
                                 >
                                     habla
                                 </button>
                                 <button
                                     className="character__action btn"
                                     id="btn-die"
+                                    onClick={handleDieClick}
                                 >
                                     muere
                                 </button>

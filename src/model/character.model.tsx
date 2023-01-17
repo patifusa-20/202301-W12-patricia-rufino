@@ -22,8 +22,4 @@ export class Character implements CharacterTypes {
     death() {
         this.isAlive = false;
     }
-
-    me() {
-        return this.name + " " + this.family;
-    }
 }

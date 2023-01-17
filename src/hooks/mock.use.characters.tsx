@@ -16,4 +16,4 @@ mockFighter.id = "000002";
 
 export const mockCharacters = [mockKing, mockFighter];
 
-export const mockUpdateFighter = { ...mockFighter, name: "Updated name" };
+export const mockTalkFighter = { ...mockFighter, name: "Talk name" };

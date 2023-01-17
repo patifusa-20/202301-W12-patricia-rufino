@@ -10,7 +10,7 @@ export function useCharacters() {
     const handleLoad = useCallback(async () => {
         setCharacters(await characters);
     }, []);
-    const handleUpdate = async function (character: Partial<CharacterTypes>) {
+    const handleTalk = async function (character: CharacterTypes) {
         setCharacters(
             characters.map((item) =>
                 item.id === character.id ? { ...item, ...character } : item
@@ -18,14 +18,19 @@ export function useCharacters() {
         );
     };
 
-    const handleDelete = async function (id: CharacterTypes["id"]) {
-        setCharacters(characters.filter((item) => item.id !== id));
+    const handleDie = async function (character: CharacterTypes) {
+        character.isAlive = false;
+        setCharacters(
+            characters.map((item) =>
+                item.id === character.id ? { ...item, ...character } : item
+            )
+        );
     };
 
     return {
         characters,
         handleLoad,
-        handleUpdate,
-        handleDelete,
+        handleTalk,
+        handleDie,
     };
 }
