@@ -4,15 +4,17 @@ import { HomePage } from "../../pages/home/home.page";
 import "./App.scss";
 
 function App() {
-    const { characters, handleLoad, handleTalk, handleDie } = useCharacters();
+    const { item, characters, handleLoad, handleTalk, handleDie } =
+        useCharacters();
 
     useEffect(() => {
         handleLoad();
-    }, [handleLoad]);
+    }, [characters]);
 
     return (
         <div className="App">
             <HomePage
+                character={item}
                 characters={characters}
                 handleTalk={handleTalk}
                 handleDie={handleDie}

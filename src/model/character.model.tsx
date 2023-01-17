@@ -8,6 +8,7 @@ export class Character implements CharacterTypes {
     }
     id: string;
     isAlive: boolean;
+    isTalk: boolean;
     constructor(
         public name: string,
         public family: string,
@@ -16,6 +17,7 @@ export class Character implements CharacterTypes {
         public image: string
     ) {
         this.isAlive = true;
+        this.isTalk = false;
         this.id = Character.generateId();
     }
 

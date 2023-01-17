@@ -26,10 +26,6 @@ export function Characters({
                     })}
                 </ul>
             </div>
-            <div className="comunications">
-                <p className="comunications__text display-1"></p>
-                <img className="comunications__picture" src="" alt="" />
-            </div>
         </>
     );
 }

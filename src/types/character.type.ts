@@ -7,6 +7,7 @@ export type CharacterTypes = {
     age: number;
     role: string;
     isAlive: boolean;
+    isTalk: boolean;
     image: string;
     icon?: string;
     sentence?: string;
