@@ -40,7 +40,7 @@ describe(`Given useCharacters (custom hook)
             render(<TestComponent />);
         });
     });
-    describe(`When the repo is working OK`, () => {
+    describe(`When the component is rendered OK`, () => {
         test("Then its function handleLoad should be add characters to the state", async () => {
             const buttons = screen.getAllByRole("button");
             expect(await screen.findByText(/loaded/i)).toBeInTheDocument();
@@ -55,8 +55,10 @@ describe(`Given useCharacters (custom hook)
         });
         test("Then its function handleTalk should be add Characters to the state", async () => {
             const buttons = screen.getAllByRole("button");
+            const closeCommunication = jest.fn();
             expect(await screen.findByText(/Talk/i)).toBeInTheDocument();
             userEvent.click(buttons[1]);
+            // expect(closeCommunication).toBeCalledTimes(1);
         });
         test("Then its function handleDie should be Talk Characters to the state", async () => {
             const buttons = screen.getAllByRole("button");

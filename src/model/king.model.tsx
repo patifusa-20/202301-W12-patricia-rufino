@@ -13,7 +13,4 @@ export class King extends Character {
     ) {
         super(name, family, age, role, image);
     }
-    death() {
-        super.death();
-    }
 }

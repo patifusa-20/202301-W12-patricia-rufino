@@ -20,8 +20,4 @@ export class Character implements CharacterTypes {
         this.isTalk = false;
         this.id = Character.generateId();
     }
-
-    death() {
-        this.isAlive = false;
-    }
 }

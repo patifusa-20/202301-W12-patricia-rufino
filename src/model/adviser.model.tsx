@@ -14,7 +14,4 @@ export class Adviser extends Character {
         super(name, family, age, role, image);
         this.advisedCharacter = advisedCharacter;
     }
-    death() {
-        super.death();
-    }
 }

@@ -16,7 +16,4 @@ export class Squire extends Character {
         this.advisedCharacter = advisedCharacter;
         this.greasy = greasy;
     }
-    death() {
-        super.death();
-    }
 }
