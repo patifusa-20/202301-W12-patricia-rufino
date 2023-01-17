@@ -2,7 +2,7 @@ import { Character } from "./character.model";
 
 export class Adviser extends Character {
     sentence = "No sé por qué, pero creo que voy a morir pronto";
-    icon = "&#x1F393";
+    icon = "&#x1F393;";
     constructor(
         public name: string,
         public family: string,
