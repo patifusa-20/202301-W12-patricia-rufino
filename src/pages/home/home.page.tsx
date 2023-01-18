@@ -1,6 +1,5 @@
 import { Communication } from "../../components/character.communication/communication";
 import { Characters } from "../../components/characters/characters";
-import { CharacterTypes } from "../../types/character.type";
 
 export function HomePage() {
     return (

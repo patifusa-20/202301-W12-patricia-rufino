@@ -1,5 +1,3 @@
-import React, { useEffect } from "react";
-import { useCharacters } from "../../hooks/use.characters";
 import { HomePage } from "../../pages/home/home.page";
 import "./App.scss";
 
