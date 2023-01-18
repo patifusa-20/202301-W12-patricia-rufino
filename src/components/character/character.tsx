@@ -1,41 +1,12 @@
-import { useContext } from "react";
-import { CharacterContext } from "../../context/character.context";
+import { Adviser } from "../../model/adviser.model";
+import { Fighter } from "../../model/fighter.model";
+import { King } from "../../model/king.model";
+import { Squire } from "../../model/squire.model";
 import { CharacterTypes } from "../../types/character.type";
+import { Buttons } from "../character.buttons/buttons";
 
 export function Character({ character }: { character: CharacterTypes }) {
-    const { handleTalk, handleDie } = useContext(CharacterContext);
-
     const fullName = character.name + " " + character.family;
-    const loadCharacterTraits = (character: CharacterTypes) => {
-        let characterTraits = "";
-        if (character.years) {
-            characterTraits += `Años de reinado: ${character.years}`;
-        }
-        if (character.weapon) {
-            characterTraits += `Arma: ${character.weapon}`;
-        }
-        if (character.skill) {
-            characterTraits += `Destreza: ${character.skill}`;
-        }
-        if (character.greasy) {
-            characterTraits += `Peloteo: ${character.greasy}`;
-        }
-        if (character.advisedCharacter && character.family) {
-            characterTraits += `Asesora a: ${character.advisedCharacter.name}`;
-        }
-        if (character.advisedCharacter && character.greasy) {
-            characterTraits += `Sirve a: ${character.advisedCharacter.name}`;
-        }
-        return characterTraits;
-    };
-
-    const handleTalkClick = () => {
-        handleTalk(character);
-    };
-
-    const handleDieClick = () => {
-        handleDie(character);
-    };
 
     return (
         <>
@@ -71,24 +42,40 @@ export function Character({ character }: { character: CharacterTypes }) {
                         </div>
                         <div className="character__overlay">
                             <ul className="list-unstyled">
-                                {loadCharacterTraits(character)}
+                                {character instanceof King ? (
+                                    <li>Años de reinado: {character.years}</li>
+                                ) : (
+                                    ""
+                                )}
+                                {character instanceof Adviser ? (
+                                    <li>
+                                        Asesora a:
+                                        {character.advisedCharacter.name}
+                                    </li>
+                                ) : (
+                                    ""
+                                )}
+                                {character instanceof Fighter ? (
+                                    <li>
+                                        <p>Arma: {character.weapon}</p>
+                                        <p>Destreza: {character.skill}</p>
+                                    </li>
+                                ) : (
+                                    ""
+                                )}
+                                {character instanceof Squire ? (
+                                    <li>
+                                        <p>Peloteo: {character.greasy}</p>
+                                        <p>
+                                            Sirve a:
+                                            {character.advisedCharacter.name}
+                                        </p>
+                                    </li>
+                                ) : (
+                                    ""
+                                )}
                             </ul>
-                            <div className="character__actions">
-                                <button
-                                    className="character__action btn"
-                                    id="btn-communication"
-                                    onClick={handleTalkClick}
-                                >
-                                    habla
-                                </button>
-                                <button
-                                    className="character__action btn"
-                                    id="btn-die"
-                                    onClick={handleDieClick}
-                                >
-                                    muere
-                                </button>
-                            </div>
+                            <Buttons character={character}></Buttons>
                         </div>
                     </div>
                     <i className="emoji">{character.icon}</i>
