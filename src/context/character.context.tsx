@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { Character } from "../model/character.model";
+import { CharacterModel } from "../model/character.model";
 import { CharacterTypes } from "../types/character.type";
 
 export type CharacterContextStructure = {
@@ -12,8 +12,8 @@ export type CharacterContextStructure = {
 
 //Es importante tipar el valor inicial para que el contexto sepa de qué se trata
 // Normalmente el contexto se utiliza creando un componente que proveerá el contexto al resto de componentes.
-const initialContext: CharacterContextStructure = {
-    item: new Character("", "", 1, "", ""),
+export const initialContext: CharacterContextStructure = {
+    item: new CharacterModel("", "", 1, "", ""),
     characters: [],
     handleLoad: async () => {
         //

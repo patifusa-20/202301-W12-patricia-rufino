@@ -1,4 +1,4 @@
-import { Character } from "../model/character.model";
+import { CharacterModel } from "../model/character.model";
 
 export type CharacterTypes = {
     id: string;
@@ -14,6 +14,14 @@ export type CharacterTypes = {
     years?: number;
     weapon?: string;
     skill?: number;
-    advisedCharacter?: Character; //las propiedades pueden apuntar a otras clases
+    advisedCharacter?: CharacterModel; //las propiedades pueden apuntar a otras clases
     greasy?: number;
+};
+
+export type UseCharactersType = {
+    item: CharacterTypes;
+    characters: Array<CharacterTypes>;
+    handleLoad: () => Promise<void>;
+    handleTalk: (character: CharacterTypes) => Promise<void>;
+    handleDie: (character: CharacterTypes) => Promise<void>;
 };

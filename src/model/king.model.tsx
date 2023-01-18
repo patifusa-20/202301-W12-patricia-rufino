@@ -1,6 +1,6 @@
-import { Character } from "./character.model";
+import { CharacterModel } from "./character.model";
 
-export class King extends Character {
+export class King extends CharacterModel {
     sentence = "Vais a morir todos";
     icon = "👑";
     constructor(

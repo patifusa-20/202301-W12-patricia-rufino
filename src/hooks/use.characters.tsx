@@ -1,15 +1,15 @@
 import { useCallback, useState, useReducer } from "react";
 import { charactersData } from "../data/characters.data";
-import { Character } from "../model/character.model";
+import { CharacterModel } from "../model/character.model";
 import { characterReducer } from "../reducers/character.reducer";
-import { CharacterTypes } from "../types/character.type";
+import { CharacterTypes, UseCharactersType } from "../types/character.type";
 import * as actionCreator from "../reducers/action.creators";
 
-export function useCharacters() {
+export function useCharacters(): UseCharactersType {
     const initialState: Array<CharacterTypes> = charactersData;
     const [characters, dispatch] = useReducer(characterReducer, initialState);
 
-    const prevState: CharacterTypes = new Character("", "", 1, "", "");
+    const prevState: CharacterTypes = new CharacterModel("", "", 1, "", "");
     const [item, setItem] = useState(prevState);
 
     const handleLoad = useCallback(async () => {
