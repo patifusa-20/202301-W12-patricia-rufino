@@ -58,7 +58,14 @@ export function Character({ character }: { character: CharacterTypes }) {
                             <ul className="list-unstyled">
                                 <li>Edad: {character.age} años</li>
                                 <li>
-                                    Estado:<i className="fas fa-thumbs-up"></i>
+                                    Estado:
+                                    <i
+                                        className={
+                                            character.isAlive
+                                                ? "fas fa-thumbs-up"
+                                                : "fas fa-thumbs-down"
+                                        }
+                                    ></i>
                                 </li>
                             </ul>
                         </div>
