@@ -18,9 +18,11 @@ export const initialContext: CharacterContextStructure = {
     handleLoad: async () => {
         //
     },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     handleTalk: async (character: CharacterTypes) => {
         //
     },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     handleDie: async (character: CharacterTypes) => {
         //
     },
