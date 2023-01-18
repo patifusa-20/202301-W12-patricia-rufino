@@ -1,15 +1,14 @@
-import { CharacterTypes } from "../../types/character.type";
+import { useEffect, useContext } from "react";
+import { CharacterContext } from "../../context/character.context";
 import { Character } from "../character/character";
 
-export function Characters({
-    characters,
-    handleTalk,
-    handleDie,
-}: {
-    characters: Array<CharacterTypes>;
-    handleTalk: (item: CharacterTypes) => void;
-    handleDie: (item: CharacterTypes) => void;
-}) {
+export function Characters() {
+    const { characters, handleLoad } = useContext(CharacterContext);
+
+    useEffect(() => {
+        handleLoad();
+    }, [characters]);
+
     return (
         <>
             <div className="app container">
@@ -19,8 +18,6 @@ export function Characters({
                             <Character
                                 key={item.id}
                                 character={item}
-                                handleTalk={handleTalk}
-                                handleDie={handleDie}
                             ></Character>
                         );
                     })}

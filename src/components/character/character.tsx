@@ -1,14 +1,10 @@
+import { useContext } from "react";
+import { CharacterContext } from "../../context/character.context";
 import { CharacterTypes } from "../../types/character.type";
 
-export function Character({
-    character,
-    handleTalk,
-    handleDie,
-}: {
-    character: CharacterTypes;
-    handleTalk: (item: CharacterTypes) => void;
-    handleDie: (item: CharacterTypes) => void;
-}) {
+export function Character({ character }: { character: CharacterTypes }) {
+    const { handleTalk, handleDie } = useContext(CharacterContext);
+
     const fullName = character.name + " " + character.family;
     const loadCharacterTraits = (character: CharacterTypes) => {
         let characterTraits = "";

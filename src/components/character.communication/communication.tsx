@@ -1,20 +1,17 @@
-import { CharacterTypes } from "../../types/character.type";
+import { useContext } from "react";
+import { CharacterContext } from "../../context/character.context";
 
-export function Communication({ character }: { character: CharacterTypes }) {
+export function Communication() {
+    const { item } = useContext(CharacterContext);
+
     return (
         <>
-            <div
-                className={
-                    character.isTalk ? "comunications on" : "comunications"
-                }
-            >
-                <p className="comunications__text display-1">
-                    {character.sentence}
-                </p>
+            <div className={item.isTalk ? "comunications on" : "comunications"}>
+                <p className="comunications__text display-1">{item.sentence}</p>
                 <img
                     className="comunications__picture"
-                    src={character.image}
-                    alt={character.name}
+                    src={item.image}
+                    alt={item.name}
                 />
             </div>
         </>
