@@ -6,15 +6,13 @@ import { CharacterTypes } from "../../types/character.type";
 import { Buttons } from "../character.buttons/buttons";
 
 export function Character({ character }: { character: CharacterTypes }) {
-    const fullName = character.name + " " + character.family;
-
     return (
         <>
             <li className="character col" id={character.id}>
                 <div className="card character__card">
                     <img
                         src={character.image}
-                        alt={fullName}
+                        alt={character.name + " " + character.family}
                         className={
                             character.isAlive
                                 ? "character__picture card-img-top"
@@ -23,7 +21,7 @@ export function Character({ character }: { character: CharacterTypes }) {
                     />
                     <div className="card-body">
                         <h2 className="character__name card-title h4">
-                            {fullName}
+                            {character.name + " " + character.family}
                         </h2>
                         <div className="character__info">
                             <ul className="list-unstyled">
@@ -31,6 +29,7 @@ export function Character({ character }: { character: CharacterTypes }) {
                                 <li>
                                     Estado:
                                     <i
+                                        data-testid="thumb-icon"
                                         className={
                                             character.isAlive
                                                 ? "fas fa-thumbs-up"
