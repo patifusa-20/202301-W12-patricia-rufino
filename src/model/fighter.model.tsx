@@ -2,7 +2,7 @@ import { Character } from "./character.model";
 
 export class Fighter extends Character {
     sentence = "Primero pego y luego pregunto";
-    icon = "&#x1F5E1;";
+    icon = "🗡️";
     constructor(
         public name: string,
         public family: string,
