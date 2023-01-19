@@ -35,12 +35,12 @@ describe('Given "Buttons" component in "Character" feature', () => {
     describe("When component is call with a DOM implementation", () => {
         test("Then if a user interact with Habla button, a function is called", async () => {
             const elementButton = await screen.findAllByRole("button");
-            await userEvent.click(elementButton[0]);
+            userEvent.click(elementButton[0]);
             expect(handleTalk).toHaveBeenCalled();
         });
         test("Then if a user interact with Muere button, a function is called", async () => {
             const elementButton = await screen.findAllByRole("button");
-            await userEvent.click(elementButton[1]);
+            userEvent.click(elementButton[1]);
             expect(handleDie).toHaveBeenCalled();
         });
     });
