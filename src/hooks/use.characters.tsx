@@ -1,31 +1,45 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useReducer } from "react";
 import { charactersData } from "../data/characters.data";
-import { CharacterTypes } from "../types/character.type";
+import { CharacterModel } from "../model/character.model";
+import { characterReducer } from "../reducers/character.reducer";
+import { CharacterTypes, UseCharactersType } from "../types/character.type";
+import * as actionCreator from "../reducers/action.creators";
 
-export function useCharacters() {
+export function useCharacters(): UseCharactersType {
     const initialState: Array<CharacterTypes> = charactersData;
+    const [characters, dispatch] = useReducer(characterReducer, initialState);
 
-    const [characters, setCharacters] = useState(initialState);
+    const prevState: CharacterTypes = new CharacterModel("", "", 1, "", "");
+    const [item, setItem] = useState(prevState);
 
     const handleLoad = useCallback(async () => {
-        setCharacters(await characters);
+        dispatch(actionCreator.CharacterLoadActionCreator(characters));
     }, []);
-    const handleUpdate = async function (character: Partial<CharacterTypes>) {
-        setCharacters(
-            characters.map((item) =>
-                item.id === character.id ? { ...item, ...character } : item
-            )
-        );
+
+    const closeCommunication = (characterItem: CharacterTypes) => {
+        characterItem.isTalk = false;
+        dispatch(actionCreator.CharacterTalkActionCreator(characterItem));
+        setItem(characterItem);
+    };
+    const handleTalk = async function (character: CharacterTypes) {
+        character.isTalk = true;
+        dispatch(actionCreator.CharacterTalkActionCreator(character));
+        setItem(character);
+        setTimeout(() => {
+            closeCommunication(character);
+        }, 3000);
     };
 
-    const handleDelete = async function (id: CharacterTypes["id"]) {
-        setCharacters(characters.filter((item) => item.id !== id));
+    const handleDie = async function (character: CharacterTypes) {
+        character.isAlive = false;
+        dispatch(actionCreator.CharacterDieActionCreator(character));
     };
 
     return {
+        item,
         characters,
         handleLoad,
-        handleUpdate,
-        handleDelete,
+        handleTalk,
+        handleDie,
     };
 }

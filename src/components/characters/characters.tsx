@@ -1,11 +1,14 @@
-import { CharacterTypes } from "../../types/character.type";
+import { useEffect, useContext } from "react";
+import { CharacterContext } from "../../context/character.context";
 import { Character } from "../character/character";
 
-export function Characters({
-    characters,
-}: {
-    characters: Array<CharacterTypes>;
-}) {
+export function Characters() {
+    const { characters, handleLoad } = useContext(CharacterContext);
+
+    useEffect(() => {
+        handleLoad();
+    }, [characters]);
+
     return (
         <>
             <div className="app container">
@@ -19,10 +22,6 @@ export function Characters({
                         );
                     })}
                 </ul>
-            </div>
-            <div className="comunications">
-                <p className="comunications__text display-1"></p>
-                <img className="comunications__picture" src="" alt="" />
             </div>
         </>
     );

@@ -1,6 +1,6 @@
 import { CharacterTypes } from "../types/character.type";
 
-export class Character implements CharacterTypes {
+export class CharacterModel implements CharacterTypes {
     static generateId() {
         const aNumbers = new Uint32Array(1);
         window.crypto?.getRandomValues(aNumbers);
@@ -8,6 +8,7 @@ export class Character implements CharacterTypes {
     }
     id: string;
     isAlive: boolean;
+    isTalk: boolean;
     constructor(
         public name: string,
         public family: string,
@@ -16,14 +17,7 @@ export class Character implements CharacterTypes {
         public image: string
     ) {
         this.isAlive = true;
-        this.id = Character.generateId();
-    }
-
-    death() {
-        this.isAlive = false;
-    }
-
-    me() {
-        return this.name + " " + this.family;
+        this.isTalk = false;
+        this.id = CharacterModel.generateId();
     }
 }

@@ -1,9 +1,10 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { Fighter } from "../model/fighter.model";
 import {
     mockKing,
     mockFighter,
-    mockUpdateFighter,
+    mockTalkFighter,
     mockCharacters,
 } from "./mock.use.characters";
 
@@ -14,16 +15,16 @@ describe(`Given useCharacters (custom hook)
     let TestComponent: () => JSX.Element;
     beforeEach(() => {
         TestComponent = () => {
-            const { handleLoad, handleUpdate, handleDelete } = useCharacters();
+            const { handleLoad, handleTalk, handleDie } = useCharacters();
             return (
                 <>
                     <button onClick={handleLoad}>Load</button>
-                    <button onClick={() => handleUpdate(mockUpdateFighter)}>
-                        Update
+                    <button
+                        onClick={() => handleTalk(mockTalkFighter as Fighter)}
+                    >
+                        Talk
                     </button>
-                    <button onClick={() => handleDelete(mockKing.id)}>
-                        Delete
-                    </button>
+                    <button onClick={() => handleDie(mockKing)}>Die</button>
                     <div>
                         <p>Loaded</p>
                         <ul>
@@ -39,7 +40,7 @@ describe(`Given useCharacters (custom hook)
             render(<TestComponent />);
         });
     });
-    describe(`When the repo is working OK`, () => {
+    describe(`When the component is rendered OK`, () => {
         test("Then its function handleLoad should be add characters to the state", async () => {
             const buttons = screen.getAllByRole("button");
             expect(await screen.findByText(/loaded/i)).toBeInTheDocument();
@@ -52,14 +53,15 @@ describe(`Given useCharacters (custom hook)
                 await screen.findByText(mockFighter.name)
             ).toBeInTheDocument();
         });
-        test("Then its function handleUpdate should be add Characters to the state", async () => {
+        test("Then its function handleTalk should be add Characters to the state", async () => {
             const buttons = screen.getAllByRole("button");
-            expect(await screen.findByText(/update/i)).toBeInTheDocument();
+
+            expect(await screen.findByText(/Talk/i)).toBeInTheDocument();
             userEvent.click(buttons[1]);
         });
-        test("Then its function handleDelete should be update Characters to the state", async () => {
+        test("Then its function handleDie should be Talk Characters to the state", async () => {
             const buttons = screen.getAllByRole("button");
-            expect(await screen.findByText(/delete/i)).toBeInTheDocument();
+            expect(await screen.findByText(/Die/i)).toBeInTheDocument();
             act(() => {
                 userEvent.click(buttons[2]);
             });
